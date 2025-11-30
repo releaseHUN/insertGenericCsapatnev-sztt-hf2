@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using hazifeladat.DAL.Models.Enums;
+
+namespace hazifeladat.DAL.Models
+{
+    public class Booking
+    {
+        public int BookingId { get; set; }
+        public string PlaceId { get; set; }
+        public string GuestName { get; set; }
+        public int NumberOfGuests { get; set; }
+        public DateTime Arrival { get; set; }
+        public DateTime Departure { get; set; }
+
+    }
+}
