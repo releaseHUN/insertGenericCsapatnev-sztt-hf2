@@ -13,4 +13,8 @@
     <DisableRuntimeMarshalling>true</DisableRuntimeMarshalling>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\hazifeladat.DAL1\hazifeladat.DAL1.csproj" />
+    <ProjectReference Include="..\hazifeladat.Logic1\hazifeladat.Logic1.csproj" />
+  </ItemGroup>
 </Project>
