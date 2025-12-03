@@ -10,7 +10,8 @@ namespace hazifeladat.DAL1.Models
     public class User
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string UserName { get; set; }
+        public string FullName { get; set; }
 
         public UserRole Role { get; set; }
 
@@ -19,9 +20,10 @@ namespace hazifeladat.DAL1.Models
         public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
 
 
-        public User(string name, string passwordHash, UserRole role)
+        public User(string userName, string fullName, string passwordHash, UserRole role)
         {
-            Name = name;
+            UserName = userName;
+            FullName = fullName;
             PasswordHash = passwordHash;
             Role = role;
         }

@@ -10,7 +10,8 @@ namespace hazifeladat.DAL1.Models
     public class Booking
     {
         public int BookingId { get; set; }
-        public string PlaceId { get; set; }
+        public int PlaceId { get; set; }
+        public int UserId { get; set; }
         public string GuestName { get; set; }
         public int NumberOfGuests { get; set; }
         public DateTime Arrival { get; set; }

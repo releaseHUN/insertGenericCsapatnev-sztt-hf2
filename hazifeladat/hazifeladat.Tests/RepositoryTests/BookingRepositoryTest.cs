@@ -53,7 +53,7 @@ namespace hazifeladat.Tests.RepositoryTests
             {
                 BookingId = 0,  // 0 -> repo ad majd ID-t
                 // ide nyugodtan beírhatsz további property-ket, ha vannak kötelezők
-                PlaceId = "1",
+                PlaceId = 1,
                 GuestName = "Tamas",
                 NumberOfGuests = 1,
                 

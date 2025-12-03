@@ -16,8 +16,8 @@ namespace hazifeladat.DAL1.Repositories.Interfaces
         Task AddAsync(Booking booking);
 
         Task<IReadOnlyList<Booking>> GetAllAsync();
-        //Task<Booking?> GetByIdAsync(int id);
-        //Task UpdateAsync(Booking booking);
+        Task<Booking?> GetByIdAsync(int id);
+        Task UpdateAsync(Booking booking);
 
     }
 }

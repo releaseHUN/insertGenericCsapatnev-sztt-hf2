@@ -15,5 +15,10 @@ namespace hazifeladat.DAL1.Repositories.Interfaces
         Task AddAsync(Places places);
 
         Task<IReadOnlyList<Places>> GetAllAsync();
+
+        Task<Places> GetByIdAsync(int id);
+
+        Task UpdateAsync(Places place);
     }
 }
+
