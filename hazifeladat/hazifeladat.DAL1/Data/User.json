@@ -1,0 +1,19 @@
+{
+  "Users": [
+    {
+      "Id": 1,
+      "Name": "Admin",
+      "Role": "Admin",
+      "PasswordHash": "1234",
+      "Bookings": []
+
+    },
+    {
+      "Id": 2,
+      "Name": "John Doe",
+      "Role": "Guest",
+      "PasswordHash": "hashed_password_456",
+      "Bookings": [ 1, 2 ]
+    }
+  ]
+}
