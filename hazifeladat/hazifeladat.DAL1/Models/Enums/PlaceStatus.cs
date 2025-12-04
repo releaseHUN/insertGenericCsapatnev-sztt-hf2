@@ -9,6 +9,7 @@ namespace hazifeladat.DAL1.Models.Enums
     public enum PlaceStatus
     {
         BOOKED,
-        AVAILABLE
+        AVAILABLE,
+        OUTOFORDER
     }
 }

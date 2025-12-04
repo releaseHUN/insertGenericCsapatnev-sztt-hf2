@@ -113,6 +113,22 @@ namespace hazifeladat.DAL1.Repositories.Repositories
             return Task.FromResult(result);
         }
 
+        public Task<Places?> GetByIdAsync(int id)
+        {
+            var booking = _places.SingleOrDefault(b => b.Id == id);
+            return Task.FromResult(booking);
+        }
 
+        public async Task UpdateAsync(Places place)
+        {
+            var existing = _places.SingleOrDefault(b => b.Id == place.Id);
+            if (existing == null)
+                return;
+
+            int index = _places.IndexOf(existing);
+            _places[index] = place;
+
+            await SaveAsync();
+        }
     }
 }

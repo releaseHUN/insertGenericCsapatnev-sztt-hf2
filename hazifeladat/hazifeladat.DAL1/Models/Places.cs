@@ -13,7 +13,7 @@ namespace hazifeladat.DAL1.Models
         public int Id { get; set; }
         public PlaceTypes Type { get; set; }
         public int ?Capacity { get; set; }
-        public int PricePerNight { get; set; }
+        public decimal PricePerNight { get; set; }
         public List<String>? Amenities { get; set; }
         public PlaceStatus Status { get; set; }
     }

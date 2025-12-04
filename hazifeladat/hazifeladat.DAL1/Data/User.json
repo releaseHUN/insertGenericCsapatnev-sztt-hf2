@@ -2,7 +2,8 @@
   "Users": [
     {
       "Id": 1,
-      "Name": "Admin",
+      "UserName": "Admin",
+      "FullName" : "Admin",
       "Role": "Admin",
       "PasswordHash": "1234",
       "Bookings": []
@@ -10,7 +11,8 @@
     },
     {
       "Id": 2,
-      "Name": "John Doe",
+      "UserName" : "Guest",
+      "FullName": "John Doe",
       "Role": "Guest",
       "PasswordHash": "hashed_password_456",
       "Bookings": [ 1, 2 ]
