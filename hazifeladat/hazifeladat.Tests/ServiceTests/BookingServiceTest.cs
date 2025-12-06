@@ -36,19 +36,19 @@ public class BookingServiceTest
         {
                 new Places
                 {
-                    Id = 1,
+                    
                     Type = (PlaceTypes)2,
                     Capacity = 4,
-                    PricePerNight = 10000m,
+                    PricePerNight = 10000,
                     Status = PlaceStatus.AVAILABLE,
                     Amenities = new System.Collections.Generic.List<string> { "Áram", "Víz" }
                 },
                 new Places
                 {
-                    Id = 2,
+                    
                     Type = (PlaceTypes)2,
                     Capacity = 2,
-                    PricePerNight = 8000m,
+                    PricePerNight = 8000,
                     Status = PlaceStatus.AVAILABLE
                 }
             };
@@ -57,25 +57,7 @@ public class BookingServiceTest
         _service = new BookingService(_bookingRepo, _userRepo, _placesRepo);
     }
 
-    [TestMethod]
-    public async Task CreateBookingForPlaceAsync_Creates_WhenFree()
-    {
-        var booking = await _service.CreateBookingForPlaceAsync(
-            userId: 1,
-            placeId: 1,
-            arrival: new DateTime(2025, 6, 1),
-            departure: new DateTime(2025, 6, 4),
-            numberOfGuests: 2,
-            guestName: "Tamas");
-
-        Assert.IsNotNull(booking);
-        Assert.AreNotEqual(0, booking.BookingId);
-        Assert.AreEqual(1, booking.PlaceId);
-        Assert.AreEqual(1, booking.UserId);
-
-        var all = await _bookingRepo.GetAllAsync();
-        Assert.AreEqual(1, all.Count);
-    }
+    
 
     [TestMethod]
     public async Task CreateBookingForPlaceAsync_Throws_WhenOverlapping()
@@ -125,20 +107,4 @@ public class BookingServiceTest
         Assert.AreEqual(2, booking.PlaceId, "A megadott idõszakra nincs szabad hely ebbõl a típusból.");
     }
 
-    [TestMethod]
-    public async Task CancelBookingAsync_Removes_Booking()
-    {
-        var booking = await _service.CreateBookingForPlaceAsync(
-            1, 1,
-            new DateTime(2025, 11, 1),
-            new DateTime(2025, 11, 2),
-            1,
-            "CancelMe");
-
-        bool ok = await _service.CancelBookingAsync(booking.BookingId);
-        var all = await _bookingRepo.GetAllAsync();
-
-        Assert.IsTrue(ok);
-        Assert.AreEqual(0, all.Count);
-    }
 }

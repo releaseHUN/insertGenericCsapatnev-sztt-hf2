@@ -86,6 +86,10 @@ namespace hazifeladat.Logic.Services
 
             await _bookingRepository.AddAsync(booking);
 
+            var bookingId = booking.BookingId;
+
+
+
             var all = await _bookingRepository.GetAllAsync();
             return all.OrderByDescending(b => b.BookingId).First(b => b.UserId == userId && b.PlaceId == placeId);
         }

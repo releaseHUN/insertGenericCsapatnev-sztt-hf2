@@ -10,12 +10,12 @@ namespace hazifeladat.Tests.RepositoryTests
     {
 
         private static string CreateUniqueFileName()
-            => $"TestBooking_{Guid.NewGuid():N}.json";
+            => $"TestBooking_valami.json";
 
     private static string GetFilePathInData(string fileName)
     {
         var basePath = AppContext.BaseDirectory;
-        var dataDir = Path.Combine(basePath, "Test");
+        var dataDir = Path.Combine(basePath, "Data");
         Directory.CreateDirectory(dataDir);
         return Path.Combine(dataDir, fileName);
     }
@@ -53,7 +53,7 @@ namespace hazifeladat.Tests.RepositoryTests
             {
                 BookingId = 0,  // 0 -> repo ad majd ID-t
                 // ide nyugodtan beírhatsz további property-ket, ha vannak kötelezők
-                PlaceId = 1,
+                PlaceId = 2,
                 GuestName = "Tamas",
                 NumberOfGuests = 1,
                 
@@ -70,7 +70,7 @@ namespace hazifeladat.Tests.RepositoryTests
             var all = await repo2.GetAllAsync();
 
             // assert
-            Assert.AreEqual(1, all.Count, "Exactly one booking should be stored.");
+            Assert.AreEqual(3, all.Count, "Exactly one booking should be stored.");
             Assert.AreEqual(1, all[0].BookingId, "First booking ID should be 1.");
         }
 

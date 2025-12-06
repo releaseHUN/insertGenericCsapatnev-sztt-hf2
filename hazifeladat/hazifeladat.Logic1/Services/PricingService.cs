@@ -38,15 +38,15 @@ namespace hazifeladat.Logic1.Services
 
             int nights = (int)(departure.Date - arrival.Date).TotalDays;
 
-            decimal basePrice = place.PricePerNight;
+            float basePrice = place.PricePerNight;
 
             // összes szezon szabály lekérése
             var rules = await _rulesRepo.GetAllAsync();
 
-            decimal finalPricePerNight = ApplySeasonRules(
+            float finalPricePerNight = ApplySeasonRules(
                 basePrice, place.Type, arrival, departure, rules);
 
-            decimal total = finalPricePerNight * nights;
+            float total = finalPricePerNight * nights;
 
             return new PriceQuote
             {
@@ -71,7 +71,7 @@ namespace hazifeladat.Logic1.Services
             return await CalculatePriceAsync(candidate.Id, arrival, departure);
         }
 
-        public async Task SetBasePricePerNightForPlaceAsync(int placeId, decimal pricePerNight)
+        public async Task SetBasePricePerNightForPlaceAsync(int placeId, float pricePerNight)
         {
             var place = await _placesRepository.GetByIdAsync(placeId)
                 ?? throw new InvalidOperationException("Hely nem található.");
@@ -91,8 +91,8 @@ namespace hazifeladat.Logic1.Services
         public async Task<IReadOnlyList<SeasonalRules>> GetSeasonRulesAsync()
             => await _rulesRepo.GetAllAsync();
 
-        private decimal ApplySeasonRules(
-            decimal basePricePerNight,
+        private float ApplySeasonRules(
+            float basePricePerNight,
             PlaceTypes placeType,
             DateTime arrival,
             DateTime departure,
@@ -105,7 +105,7 @@ namespace hazifeladat.Logic1.Services
                     departure > r.From)
                 .ToList();
 
-            decimal multiplier = 1m;
+            float multiplier = 1;
 
             foreach (var rule in applicableRules)
             {

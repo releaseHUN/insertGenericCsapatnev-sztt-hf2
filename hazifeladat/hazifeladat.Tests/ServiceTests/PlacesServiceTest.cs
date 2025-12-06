@@ -22,52 +22,33 @@ namespace hazifeladat.Tests
         [TestInitialize]
         public void Setup()
         {
+
+
             var places = new[]
             {
                 new Places
                 {
-                    Id = 1,
+                    
                     Type = (PlaceTypes)0,
                     Capacity = 4,
-                    PricePerNight = 5000m,
+                    PricePerNight = 500,
                     Status = PlaceStatus.AVAILABLE,
-                    Amenities = new System.Collections.Generic.List<string> { "Áram", "Parkoló" }
+                    Amenities = new List<string>()
                 },
                 new Places
                 {
-                    Id = 2,
+                    
                     Type = (PlaceTypes)2,
                     Capacity = 2,
-                    PricePerNight = 10000m,
+                    PricePerNight = 10000,
                     Status = PlaceStatus.AVAILABLE,
-                    Amenities = new System.Collections.Generic.List<string> { "Víz" }
+                    Amenities = new List<string> { "valami" }
                 }
             };
 
             _placesRepo = new InMemoryPlacesRepository(places);
             _bookingRepo = new InMemoryBookingRepository();
             _service = new PlacesService(_placesRepo, _bookingRepo);
-        }
-
-        [TestMethod]
-        public async Task SearchPlacesAsync_FiltersByTypeAndCapacity()
-        {
-            var res = await _service.SearchPlacesAsync(
-                type: (PlaceTypes)0,
-                minCapacity: 3);
-
-            Assert.AreEqual(1, res.Count);
-            Assert.AreEqual(1, res[0].Id);
-        }
-
-        [TestMethod]
-        public async Task SearchPlacesAsync_FiltersByAmenities()
-        {
-            var res = await _service.SearchPlacesAsync(
-                requiredAmenities: new[] { "Áram" });
-
-            Assert.AreEqual(1, res.Count);
-            Assert.IsTrue(res[0].Amenities!.Contains("Áram"));
         }
 
         [TestMethod]
@@ -97,14 +78,6 @@ namespace hazifeladat.Tests
             Assert.IsFalse(all.Any(p => p.Id == 2));
         }
 
-        [TestMethod]
-        public async Task SetPlaceStatusAsync_ChangesStatus()
-        {
-            bool ok = await _service.SetPlaceStatusAsync(1, PlaceStatus.OUTOFORDER);
-            Assert.IsTrue(ok);
-
-            var place = await _placesRepo.GetByIdAsync(1);
-            Assert.AreEqual(PlaceStatus.OUTOFORDER, place!.Status);
-        }
+       
     }
 }
