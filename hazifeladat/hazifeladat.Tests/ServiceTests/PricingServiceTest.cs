@@ -57,7 +57,7 @@ namespace hazifeladat.Tests
                 From = new DateTime(2025, 7, 1),
                 To = new DateTime(2025, 8, 1),
                 Multiplier = 1.5m,
-                AppliesToType = (PlaceTypes)0,
+                AppliesToType = [(PlaceTypes)0, (PlaceTypes)1],
                 Name = "Fõszezon"
             };
             await _rulesRepo.AddOrUpdateAsync(rule);
