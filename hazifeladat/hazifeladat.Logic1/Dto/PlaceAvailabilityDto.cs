@@ -18,5 +18,10 @@ namespace hazifeladat.Logic1.Dto
         // Milyen foglalások fedik az adott időszakot (ha vannak)
         public IReadOnlyList<Booking> OverlappingBookings { get; set; }
             = new List<Booking>();
+
+        public override string ToString()
+        {
+            return $"ID: {PlaceId}, Típus: {PlaceType}, Férőhely: {Capacity}";
+        }
     }
 }
