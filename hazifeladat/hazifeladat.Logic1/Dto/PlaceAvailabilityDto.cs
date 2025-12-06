@@ -21,7 +21,7 @@ namespace hazifeladat.Logic1.Dto
 
         public override string ToString()
         {
-            return $"ID: {PlaceId}, Típus: {PlaceType}, Férőhely: {Capacity}";
+            return $"ID: {PlaceId,displayConfig.numFieldWidth}, Típus: {PlaceType,displayConfig.typeFieldWidth}, Férőhely: {Capacity,displayConfig.numFieldWidth}";
         }
     }
 }
