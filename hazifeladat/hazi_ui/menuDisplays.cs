@@ -54,9 +54,12 @@ namespace hazi_ui
             displayDividerLine(40, '=');
             Console.WriteLine("1. Összes foglalás megtekintése");
             Console.WriteLine("2. Foglalás kezelése");
-            Console.WriteLine("3. Foglalás törlése");
-            Console.WriteLine("4. Helyek megtekintése");
-            Console.WriteLine("5. Hely hozzáadása");
+            Console.WriteLine("3. Helyek megtekintése");
+            Console.WriteLine("4. Hely hozzáadása");
+            Console.WriteLine("5. Hely módosítása");
+            Console.WriteLine("6. Szezonális szabály létrehozása");
+            Console.WriteLine("7. Szezonális szabály módosítása");
+            Console.WriteLine("8. Szezonális szabályok kiírása");
             Console.WriteLine("0. Kilépés");
             displayDividerLine(40, '-');
         }

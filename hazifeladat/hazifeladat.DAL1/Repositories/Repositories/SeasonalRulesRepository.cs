@@ -12,6 +12,12 @@ namespace hazifeladat.DAL1.Repositories.Repositories
         private readonly string _filePath;
         private List<SeasonalRules> _rules = new();
 
+        public SeasonalRulesRepository(string fileName = "Places.json")
+        {
+            var basePath = AppContext.BaseDirectory;
+            _filePath = Path.Combine(basePath, "Data", fileName);
+        }
+
         public async Task<bool> LoadAsync()
         {
             try

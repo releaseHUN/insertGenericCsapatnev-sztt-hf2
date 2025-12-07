@@ -35,9 +35,7 @@ namespace hazifeladat.DAL1.Models
             Amenities = amenities;
         }
 
-        public Places() {
-            Id = _nextId++;
-        }
+        public Places() { }
 
     }
 }
