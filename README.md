@@ -4,37 +4,26 @@
   Szabina:
   
     - osztálydiagram (Done)
-    
     - Use case diagramm (Done)
-    
     - Funkcionális és nem funkcionális követelmények (Done)
-    
     - szöveges leírása az alkalmazásnak (Done)
     
 
   Kolos:
   
     - backend (Done)
-    
     - 5 teszt (Done)
-    
     - tesztek szövegesen (Done)
-    
     - szekvenciadiagram (In progres)
-    
     - Szerepkörök és használati esetek szöveges leírása / Modulok leírása (In progres)
     
 
   Dominik:
   
     - frontend (Done)
-    
     - 5 teszt (Done)
-    
     - aktivitásdiagram (In progres)
-    
     - telepítési útmutató (In progres)
-    
     - felhasználói doksi (In progres)
     
 
