@@ -22,7 +22,7 @@
   
     - frontend (Done)
     - 5 teszt (Done)
-    - aktivitásdiagram (In progres)
+    - state machine (done)
     - telepítési útmutató (Done)
     - felhasználói doksi (Done)
     
