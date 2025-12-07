@@ -23,9 +23,7 @@ public partial class Program
         var placesLoaded = await placesRepository.LoadAsync();
         if (!bookingLoaded || !userLoaded || !placesLoaded)
         {
-            displayDividerLine(40, '=');
-            Console.WriteLine("Hiba a fájlok betöltése során.");
-            displayDividerLine(40, '=');
+            DisplayError("Hiba a fájlok betöltése során.");
             return;
         }
         BookingService bookingService = new BookingService(bookingRepository, userRepository, placesRepository);
@@ -56,9 +54,7 @@ public partial class Program
                     running = false;
                     break;
                 default:
-                    displayDividerLine(40, '=');
-                    Console.WriteLine("Érvénytelen választás, próbálja újra.");
-                    displayDividerLine(40, '=');
+                    DisplayError("Érvénytelen választás, próbálja újra.");
                     break;
             }
         } 
@@ -79,16 +75,12 @@ public partial class Program
         try
         {
             var user = await auth.RegisterGuestAsync(userName ?? "", fullName ?? "", password ?? "");
-            displayDividerLine(90, '=');
-            Console.WriteLine($"Sikeres regisztráció, üdvözlünk {user.FullName}!");
-            displayDividerLine(90, '=');
+            DisplaySuccess($"Sikeres regisztráció, üdvözlünk {user.FullName}!");
             return user;
         }
         catch (InvalidOperationException ex)
         {
-            displayDividerLine(90, '=');
-            Console.WriteLine($"Regisztráció sikertelen: {ex.Message}");
-            displayDividerLine(90, '=');
+            DisplayError($"Regisztráció sikertelen: {ex.Message}");
             return null;
         }
     }
@@ -106,14 +98,11 @@ public partial class Program
         var user = await auth.AuthenticateAsync(userName ?? "", password ?? "");
         if (user == null)
         {
-            displayDividerLine(40, '=');
-            Console.WriteLine("Hibás felhasználónév vagy jelszó.");
-            displayDividerLine(40, '=');
+            DisplayError("Hibás felhasználónév vagy jelszó.");
             return null;
         }
-        displayDividerLine(40, '=');
-        Console.WriteLine($"Sikeres belépés, üdvözlünk {user.FullName}!");
-        displayDividerLine(40, '=');
+
+        DisplaySuccess($"Sikeres belépés, üdvözlünk {user.FullName}!");
         return user;
     }
 }

@@ -86,10 +86,10 @@ namespace hazifeladat.Logic.Services
 
             await _bookingRepository.AddAsync(booking);
 
-           
+            var bookingId = booking.BookingId;
 
-            
-            
+            await _bookingRepository.AddAsync(booking);
+
             return booking;
         }
 
