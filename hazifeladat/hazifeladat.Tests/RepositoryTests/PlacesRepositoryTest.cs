@@ -11,13 +11,7 @@ public class PlacesRepositoryTest
     private static string CreateUniqueFileName()
            => $"TestPlaces_{Guid.NewGuid():N}.json";
 
-    private static string GetFilePathInData(string fileName)
-    {
-        var basePath = AppContext.BaseDirectory;
-        var dataDir = Path.Combine(basePath, "Data");
-        Directory.CreateDirectory(dataDir);
-        return Path.Combine(dataDir, fileName);
-    }
+
 
 
     [TestMethod]
@@ -25,14 +19,9 @@ public class PlacesRepositoryTest
     {
         
         var fileName = CreateUniqueFileName();
-        var fullPath = GetFilePathInData(fileName);
-
-        if (File.Exists(fullPath))
-            File.Delete(fullPath);
-
+       
         var repo = new PlacesRepository(fileName);
 
-        
         var result = await repo.LoadAsync();
         var all = await repo.GetAllAsync();
 
@@ -42,7 +31,7 @@ public class PlacesRepositoryTest
     }
 
     [TestMethod]
-    public async Task AddAsync_AddsBooking_AndPersistsToFile()
+    public async Task AddAsync_AddsPlace_AndPersistsToFile()
     {
         
         var fileName = CreateUniqueFileName();
@@ -63,7 +52,7 @@ public class PlacesRepositoryTest
     }
 
     [TestMethod]
-    public async Task DeleteAsync_DeletesBooking_AndPersistsToFile()
+    public async Task DeleteAsync_DeletesPlace_AndPersistsToFile()
     {
         
         var fileName = CreateUniqueFileName();
