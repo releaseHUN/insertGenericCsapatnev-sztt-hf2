@@ -14,7 +14,7 @@
     - backend (Done)
     - 5 teszt (Done)
     - tesztek szövegesen (Done)
-    - szekvenciadiagram (In progres)
+    - szekvenciadiagram (Done)
     - Szerepkörök és használati esetek szöveges leírása / Modulok leírása (In progres)
     
 
@@ -22,7 +22,7 @@
   
     - frontend (Done)
     - 5 teszt (Done)
-    - state machine (done)
+    - state machine (Done)
     - telepítési útmutató (Done)
     - felhasználói doksi (Done)
     
