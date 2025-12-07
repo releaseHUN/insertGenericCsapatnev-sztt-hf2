@@ -12,32 +12,21 @@ namespace hazifeladat.Tests.RepositoryTests
         private static string CreateUniqueFileName()
             => $"TestBooking_{Guid.NewGuid():N}.json";
 
-    private static string GetFilePathInData(string fileName)
-    {
-        var basePath = AppContext.BaseDirectory;
-        var dataDir = Path.Combine(basePath, "Data");
-        Directory.CreateDirectory(dataDir);
-        return Path.Combine(dataDir, fileName);
-    }
 
         [TestMethod]
         public async Task LoadAsync_FileDoesNotExist_ReturnsEmptyList()
         {
            
             var fileName = CreateUniqueFileName();
-            var fullPath = GetFilePathInData(fileName);
-
-            if (File.Exists(fullPath))
-                File.Delete(fullPath);
 
             var repo = new BookingRepository(fileName);
-
             
             var result = await repo.LoadAsync();
             var all = await repo.GetAllAsync();
 
             
             Assert.IsTrue(result, "LoadAsync should return true even if file does not exist.");
+
             Assert.AreEqual(0, all.Count, "New repository should have empty booking list.");
         }
 
@@ -55,12 +44,7 @@ namespace hazifeladat.Tests.RepositoryTests
                 PlaceId = 2,
                 GuestName = "Tamas",
                 NumberOfGuests = 1,
-                
-
-
             };
-
-           
             await repo.AddAsync(booking);
 
             
@@ -91,7 +75,7 @@ namespace hazifeladat.Tests.RepositoryTests
             Assert.AreEqual(2, allBefore.Count, "Precondition: there should be two bookings.");
 
             int idToDelete = allBefore[0].BookingId;
-
+             
            
             await repo.DeleteAsync(idToDelete);
 

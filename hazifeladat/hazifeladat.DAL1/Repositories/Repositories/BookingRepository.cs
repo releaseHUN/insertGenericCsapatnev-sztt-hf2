@@ -48,6 +48,7 @@ namespace hazifeladat.DAL1.Repositories.Repositories
             }
             catch
             {
+               //akkor dob false-t ha json hibásan van megirva
                 _bookings = new List<Booking>();
                 return false;
             }
