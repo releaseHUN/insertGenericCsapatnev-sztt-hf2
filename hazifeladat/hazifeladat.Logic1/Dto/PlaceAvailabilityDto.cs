@@ -15,7 +15,6 @@ namespace hazifeladat.Logic1.Dto
 
         public bool IsAvailable { get; set; }
 
-        // Milyen foglalások fedik az adott időszakot (ha vannak)
         public IReadOnlyList<Booking> OverlappingBookings { get; set; }
             = new List<Booking>();
 
