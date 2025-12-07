@@ -76,7 +76,6 @@ namespace hazifeladat.Logic.Services
 
         public async Task<Places> CreatePlaceAsync(Places place)
         {
-            // feltételezzük, hogy a repo ad ID-t, ha 0
             await _placesRepository.AddAsync(place);
             var all = await _placesRepository.GetAllAsync();
             return all.OrderByDescending(p => p.Id).First();

@@ -10,7 +10,7 @@ namespace hazifeladat.Tests.RepositoryTests
     {
 
         private static string CreateUniqueFileName()
-            => $"TestBooking_valami.json";
+            => $"TestBooking_{Guid.NewGuid():N}.json";
 
     private static string GetFilePathInData(string fileName)
     {
@@ -23,7 +23,7 @@ namespace hazifeladat.Tests.RepositoryTests
         [TestMethod]
         public async Task LoadAsync_FileDoesNotExist_ReturnsEmptyList()
         {
-            // arrange
+           
             var fileName = CreateUniqueFileName();
             var fullPath = GetFilePathInData(fileName);
 
@@ -32,11 +32,11 @@ namespace hazifeladat.Tests.RepositoryTests
 
             var repo = new BookingRepository(fileName);
 
-            // act
+            
             var result = await repo.LoadAsync();
             var all = await repo.GetAllAsync();
 
-            // assert
+            
             Assert.IsTrue(result, "LoadAsync should return true even if file does not exist.");
             Assert.AreEqual(0, all.Count, "New repository should have empty booking list.");
         }
@@ -44,15 +44,14 @@ namespace hazifeladat.Tests.RepositoryTests
         [TestMethod]
         public async Task AddAsync_AddsBooking_AndPersistsToFile()
         {
-            // arrange
+           
             var fileName = CreateUniqueFileName();
             var repo = new BookingRepository(fileName);
             await repo.LoadAsync();
 
             var booking = new Booking
             {
-                BookingId = 0,  // 0 -> repo ad majd ID-t
-                // ide nyugodtan beírhatsz további property-ket, ha vannak kötelezők
+                BookingId = 0,  
                 PlaceId = 2,
                 GuestName = "Tamas",
                 NumberOfGuests = 1,
@@ -61,23 +60,23 @@ namespace hazifeladat.Tests.RepositoryTests
 
             };
 
-            // act
+           
             await repo.AddAsync(booking);
 
-            // új repository ugyanazzal a fájllal -> ellenőrizzük, hogy tényleg fájlból olvas
+            
             var repo2 = new BookingRepository(fileName);
             await repo2.LoadAsync();
             var all = await repo2.GetAllAsync();
 
-            // assert
-            Assert.AreEqual(3, all.Count, "Exactly one booking should be stored.");
+
+            Assert.AreEqual(1, all.Count, "Exactly one booking should be stored.");
             Assert.AreEqual(1, all[0].BookingId, "First booking ID should be 1.");
         }
 
         [TestMethod]
         public async Task DeleteAsync_DeletesBooking_AndPersistsToFile()
         {
-            // arrange
+            
             var fileName = CreateUniqueFileName();
             var repo = new BookingRepository(fileName);
             await repo.LoadAsync();
@@ -93,14 +92,14 @@ namespace hazifeladat.Tests.RepositoryTests
 
             int idToDelete = allBefore[0].BookingId;
 
-            // act
+           
             await repo.DeleteAsync(idToDelete);
 
             var repo2 = new BookingRepository(fileName);
             await repo2.LoadAsync();
             var allAfter = await repo2.GetAllAsync();
 
-            // assert
+           
             Assert.AreEqual(1, allAfter.Count, "Exactly one booking should remain after delete.");
             Assert.IsFalse(allAfter.Any(b => b.BookingId == idToDelete),
                 "Deleted booking should not be present anymore.");

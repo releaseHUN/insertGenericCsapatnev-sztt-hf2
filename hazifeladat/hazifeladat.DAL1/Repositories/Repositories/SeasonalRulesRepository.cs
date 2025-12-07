@@ -12,6 +12,8 @@ namespace hazifeladat.DAL1.Repositories.Repositories
         private readonly string _filePath;
         private List<SeasonalRules> _rules = new();
 
+        
+
         public async Task<bool> LoadAsync()
         {
             try

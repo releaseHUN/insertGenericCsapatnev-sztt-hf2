@@ -86,20 +86,10 @@ namespace hazifeladat.Logic.Services
 
             await _bookingRepository.AddAsync(booking);
 
-            var bookingId = booking.BookingId;
-
-
-
-            await _bookingRepository.AddAsync(booking);
+           
 
             
-            var place = await _placesRepository.GetByIdAsync(placeId);
-            if (place != null)
-            {
-                place.Status = PlaceStatus.BOOKED;
-                await _placesRepository.UpdateAsync(place);
-            }
-
+            
             return booking;
         }
 
@@ -304,11 +294,16 @@ namespace hazifeladat.Logic.Services
             var place = await _placesRepository.GetByIdAsync(placeId)
                         ?? throw new InvalidOperationException("Hely nem található.");
 
+
             if (place.Capacity.HasValue && numberOfGuests > place.Capacity.Value)
                 throw new InvalidOperationException("A vendégek száma meghaladja a hely kapacitását.");
 
             if (place.Status != PlaceStatus.AVAILABLE)
                 throw new InvalidOperationException("A hely jelenleg nem elérhető.");
+
+            if (place.Capacity.HasValue && numberOfGuests > place.Capacity.Value)
+                throw new InvalidOperationException("A vendégek száma meghaladja a hely kapacitását.");
+
         }
     }
 }
