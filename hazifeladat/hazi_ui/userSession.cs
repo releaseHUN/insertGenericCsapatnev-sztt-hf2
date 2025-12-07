@@ -549,18 +549,18 @@ namespace hazi_ui
                 return null;
             }
 
-            Console.WriteLine($"Jelenlegi típus: {place.Type}");
-            DisplayEnumOptions<hazifeladat.DAL1.Models.Enums.PlaceTypes>("Új típus (üres = megtartás):");
-            Console.Write("Típus: ");
-            string? newTypeStr = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(newTypeStr))
-            {
-                if (!TryParseEnum(newTypeStr, "típus", out hazifeladat.DAL1.Models.Enums.PlaceTypes newType))
-                {
-                    return null;
-                }
-                place.Type = newType;
-            }
+            //Console.WriteLine($"Jelenlegi típus: {place.Type}");
+            //DisplayEnumOptions<hazifeladat.DAL1.Models.Enums.PlaceTypes>("Új típus (üres = megtartás):");
+            //Console.Write("Típus: ");
+            //string? newTypeStr = Console.ReadLine();
+            //if (!string.IsNullOrWhiteSpace(newTypeStr))
+            //{
+            //    if (!TryParseEnum(newTypeStr, "típus", out hazifeladat.DAL1.Models.Enums.PlaceTypes newType))
+            //    {
+            //        return null;
+            //    }
+            //    place.Type = newType;
+            //}
 
             Console.WriteLine($"Jelenlegi kapacitás: {(place.Capacity.HasValue ? place.Capacity.Value.ToString() : "nincs")}");
             Console.Write("Új kapacitás (üres = megtartás): ");
