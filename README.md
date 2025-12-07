@@ -2,23 +2,24 @@
 
 # csapat felosztás:
   Szabina:
-    - követelmény specifikáció
+    - követelmény specifikáció (In progres)
     - osztálydiagram (Done)
     - Use case diagramm (Done)
-    - telepítési útmutató
-    - felhasználói doksi
+   
 
-  kolos:
+  Kolos:
     - backend (Done)
     - 5 teszt (Done)
     - tesztek szövegesen (In progres)
-    - szekvenciadiagram
-    - szöveges leírása az alkalmazásnak
+    - szekvenciadiagram (In progres)
+    - szöveges leírása az alkalmazásnak (In progres)
 
-  dominik:
-    - frontend (In progress)
+  Dominik:
+    - frontend (Done)
     - 5 teszt (Done)
-    - állapotgép / aktivitásdiagram
+    - aktivitásdiagram (In progres)
+    - telepítési útmutató (In progres)
+    - felhasználói doksi (In progres)
 
 
 1. Követelményspecifikáció (pdf) 
@@ -41,15 +42,15 @@
   
   e. Modulok leírása (felelősségi körök, kapcsolatok) 
   
-3. Implementáció (C# vagy Java) (.zip a forráskóddal vagy publikus github repo)  (In progress)
+3. Implementáció (C# vagy Java) (.zip a forráskóddal vagy publikus github repo) 
 
-4. Tesztelés (pdf + .zip/github repo) 
+4. Tesztelés (pdf + .zip/github repo)  (Done)
 
-a. Tesztek leírása (1-2 oldal) 
+  a. Tesztek leírása (1-2 oldal) (Done)
   
   b. Unit tesztek (pl. hibás bemenetek) – min 10 teszt  (Done)
   
-  c. Terheléses teszt Terheléses teszt: a profiler alapján nézzétek meg, mik a gyenge pontok és arra írjatok néhány tesztet, ami nagy tömegű adatot/párhuzamos hozzáférést szimulál 
+  c. Terheléses teszt Terheléses teszt: a profiler alapján nézzétek meg, mik a gyenge pontok és arra írjatok néhány tesztet, ami nagy tömegű adatot/párhuzamos hozzáférést szimulál (Nope)
   
 5. Telepítési útmutató (pdf) és felhasználói dokumentáció (1 - 2 + 1 - 2 oldal) (pdf) 
 
