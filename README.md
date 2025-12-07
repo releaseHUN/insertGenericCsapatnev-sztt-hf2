@@ -42,9 +42,9 @@
   
   b. Áttekintő osztálydiagram (Done)
   
-  c. Egy tipikus lefutást rögzítő szekvenciadiagram (In progres)
+  c. Egy tipikus lefutást rögzítő szekvenciadiagram (Done)
   
-  d. Áttekintő jellegű aktivitás diagram vagy állapotgép (In progres)
+  d. Áttekintő jellegű aktivitás diagram vagy állapotgép (Done)
   
   e. Modulok leírása (felelősségi körök, kapcsolatok)  (In progress)
   
@@ -60,7 +60,7 @@
   
 5. Telepítési útmutató (pdf) és felhasználói dokumentáció (1 - 2 + 1 - 2 oldal) (pdf) 
 
-  a. Hogyan kell használni a rendszert? A telepítési útmutató: azt kellen leírni, hogy hogyan lehet kipróbálni az alkalmazást. Nem kell külön .exe telepítő, ha az alkalmazás fordítható alapból. Milyen környezetben, hogyan indítható el? (In progres)
+  a. Hogyan kell használni a rendszert? A telepítési útmutató: azt kellen leírni, hogy hogyan lehet kipróbálni az alkalmazást. Nem kell külön .exe telepítő, ha az alkalmazás fordítható alapból. Milyen környezetben, hogyan indítható el? (Done)
 
   
   [SzTT_Hazi2_2025Feladatok.pdf](https://github.com/user-attachments/files/24015609/SzTT_Hazi2_2025Feladatok.pdf)
