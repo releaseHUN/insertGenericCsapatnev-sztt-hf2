@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\hazi_ui\displayConfig.cs" Link="displayConfig.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 	<None Update="Data\*.json">
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>

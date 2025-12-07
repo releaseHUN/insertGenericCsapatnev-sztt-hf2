@@ -34,8 +34,7 @@ namespace hazifeladat.Tests
             _rulesRepo = new InMemorySeasonRulesRepository();
             _service = new PricingService(_placesRepo, _rulesRepo);
         }
-
-
+      
         [TestMethod]
         public async Task CalculatePriceForPlaceTypeAsync_UsesMatchingType()
         {

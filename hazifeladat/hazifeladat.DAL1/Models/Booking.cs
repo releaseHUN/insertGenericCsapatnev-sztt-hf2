@@ -1,9 +1,10 @@
-﻿using System;
+﻿using hazifeladat.DAL1.Models.Enums;
+using hazifeladat.Logic1;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using hazifeladat.DAL1.Models.Enums;
 
 namespace hazifeladat.DAL1.Models
 {
@@ -17,5 +18,9 @@ namespace hazifeladat.DAL1.Models
         public DateTime Arrival { get; set; }
         public DateTime Departure { get; set; }
 
+        public override string ToString()
+        {
+            return $"| Foglalás ID: {BookingId,displayConfig.numFieldWidth} | Hely ID: {PlaceId,displayConfig.numFieldWidth} | Vendég név: {GuestName,displayConfig.nameFieldWidth} | Vendég ID: {UserId,displayConfig.numFieldWidth} | Férőhelyek száma: {NumberOfGuests,displayConfig.numFieldWidth} | {Arrival:yyyy-MM-dd} - {Departure:yyyy-MM-dd} |";
+        }
     }
 }
