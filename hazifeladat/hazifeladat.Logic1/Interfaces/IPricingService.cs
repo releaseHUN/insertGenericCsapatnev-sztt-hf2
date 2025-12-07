@@ -21,7 +21,7 @@ namespace hazifeladat.Logic1.Interfaces
             DateTime arrival,
             DateTime departure);
 
-        Task SetBasePricePerNightForPlaceAsync(int placeId, decimal pricePerNight);
+        Task SetBasePricePerNightForPlaceAsync(int placeId, float pricePerNight);
 
         Task AddOrUpdateSeasonRuleAsync(SeasonalRules rule);
         Task<IReadOnlyList<SeasonalRules>> GetSeasonRulesAsync();
