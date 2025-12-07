@@ -2,6 +2,8 @@
 using hazifeladat.DAL1.Repositories.Repositories;
 using hazifeladat.DAL1.Repositories.Interfaces;
 using hazifeladat.Logic.Services;
+using hazifeladat.Logic.Interfaces;
+using hazifeladat.Logic1.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

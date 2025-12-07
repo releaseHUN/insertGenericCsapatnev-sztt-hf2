@@ -3,6 +3,8 @@ using hazifeladat.DAL1.Repositories.Interfaces;
 using hazifeladat.DAL1.Repositories.Repositories;
 using hazifeladat.Logic.Interfaces;
 using hazifeladat.Logic.Services;
+using hazifeladat.Logic1.Interfaces;
+using hazifeladat.Logic1.Services;
 using static hazi_ui.menuDisplays;
 using static hazi_ui.userSession;
 using static hazi_ui.helperFunctions;
@@ -21,12 +23,17 @@ public partial class Program
         var userLoaded = await userRepository.LoadAsync();
         var placesRepository = new PlacesRepository("Places.json");
         var placesLoaded = await placesRepository.LoadAsync();
-        if (!bookingLoaded || !userLoaded || !placesLoaded)
+        var seasonalRulesRepository = new SeasonalRulesRepository("SeasonRules.json");
+        var rulesLoaded = await seasonalRulesRepository.LoadAsync();
+        
+        if (!bookingLoaded || !userLoaded || !placesLoaded || !rulesLoaded)
         {
             DisplayError("Hiba a fájlok betöltése során.");
             return;
         }
-        BookingService bookingService = new BookingService(bookingRepository, userRepository, placesRepository);
+        
+        PricingService pricingService = new PricingService(placesRepository, seasonalRulesRepository);
+        BookingService bookingService = new BookingService(bookingRepository, userRepository, placesRepository, pricingService);
         bookingService.InitializeAsync().Wait();
 
         User user = new User();
