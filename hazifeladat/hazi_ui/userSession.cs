@@ -2,6 +2,8 @@
 using hazifeladat.DAL1.Repositories.Repositories;
 using hazifeladat.DAL1.Repositories.Interfaces;
 using hazifeladat.Logic.Services;
+using hazifeladat.Logic.Interfaces;
+using hazifeladat.Logic1.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -298,6 +300,7 @@ namespace hazi_ui
         private static async Task<bool?> handleModifyBooking(BookingService bookingService, User user)
         {
             displayDividerLine(DefaultDividerWidth, '=');
+
             Console.Write("Adja meg a módosítani kívánt foglalás azonosítóját: ");
             if (!TryParseInt(Console.ReadLine(), "foglalás azonosító", out int bookingId, minValue: 1))
             {

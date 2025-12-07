@@ -3,6 +3,7 @@ using hazifeladat.DAL1.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace hazifeladat.Logic1.Dto
 {
@@ -12,6 +13,7 @@ namespace hazifeladat.Logic1.Dto
         public PlaceTypes PlaceType { get; set; }
         public int? Capacity { get; set; }
         public PlaceStatus Status { get; set; }
+        public float PricePerNight { get; set; }
 
         public bool IsAvailable { get; set; }
 
@@ -20,7 +22,8 @@ namespace hazifeladat.Logic1.Dto
 
         public override string ToString()
         {
-            return $"| ID: {PlaceId,displayConfig.numFieldWidth} | Típus: {PlaceType,displayConfig.typeFieldWidth} | Férőhely: {(Capacity == 0 || Capacity == null ? "-" : Capacity),displayConfig.numFieldWidth} | Elérhetőség: {(IsAvailable ? "Igen" : "Nem"),displayConfig.numFieldWidth} |";
+            string priceStr = PricePerNight.ToString("F0", CultureInfo.InvariantCulture);
+            return $"| ID: {PlaceId,displayConfig.numFieldWidth} | Típus: {PlaceType,displayConfig.typeFieldWidth} | Férőhely: {(Capacity == 0 || Capacity == null ? "-" : Capacity),displayConfig.numFieldWidth} | Ár/éj: {priceStr,6} | Elérhetőség: {(IsAvailable ? "Igen" : "Nem"),displayConfig.numFieldWidth} |";
         }
     }
 }

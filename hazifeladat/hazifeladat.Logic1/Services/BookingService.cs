@@ -3,6 +3,7 @@ using hazifeladat.DAL1.Models.Enums;
 using hazifeladat.DAL1.Repositories.Interfaces;
 using hazifeladat.Logic.Interfaces;
 using hazifeladat.Logic1.Dto;
+using hazifeladat.Logic1.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +17,18 @@ namespace hazifeladat.Logic.Services
         private readonly IBookingRepository _bookingRepository;
         private readonly IUserRepository _userRepository;
         private readonly IPlacesRepository _placesRepository;
+        private readonly IPricingService _pricingService;
 
         public BookingService(
             IBookingRepository bookingRepository,
             IUserRepository userRepository,
-            IPlacesRepository placesRepository)
+            IPlacesRepository placesRepository,
+            IPricingService pricingService)
         {
             _bookingRepository = bookingRepository;
             _userRepository = userRepository;
             _placesRepository = placesRepository;
+            _pricingService = pricingService;
         }
 
         public async Task InitializeAsync()
@@ -32,6 +36,8 @@ namespace hazifeladat.Logic.Services
             await _bookingRepository.LoadAsync();
             await _userRepository.LoadAsync();
             await _placesRepository.LoadAsync();
+
+            await _pricingService.InitializeAsync();
         }
 
         public async Task<IReadOnlyList<Booking>> GetAllBookingsAsync()
@@ -42,7 +48,29 @@ namespace hazifeladat.Logic.Services
         public async Task<IReadOnlyList<Booking>> GetUserBookingsAsync(int userId)
         {
             var all = await _bookingRepository.GetAllAsync();
-            return all.Where(b => b.UserId == userId).ToList();
+            var userBookings = all.Where(b => b.UserId == userId).ToList();
+            
+
+            if (_pricingService != null)
+            {
+                foreach (var booking in userBookings)
+                {
+                    try
+                    {
+                        var priceQuote = await _pricingService.CalculatePriceAsync(
+                            booking.PlaceId,
+                            booking.Arrival,
+                            booking.Departure);
+                        booking.TotalPrice = priceQuote.TotalPrice;
+                    }
+                    catch
+                    {
+
+                    }
+                }
+            }
+            
+            return userBookings;
         }
 
         public async Task<IReadOnlyList<Booking>> GetPlaceBookingsAsync(int placeId)
@@ -84,12 +112,21 @@ namespace hazifeladat.Logic.Services
                 Departure = departure
             };
 
+
+            if (_pricingService != null)
+            {
+                try
+                {
+                    var priceQuote = await _pricingService.CalculatePriceAsync(placeId, arrival, departure);
+                    booking.TotalPrice = priceQuote.TotalPrice;
+                }
+                catch
+                {
+
+                }
+            }
+
             await _bookingRepository.AddAsync(booking);
-
-            var bookingId = booking.BookingId;
-
-            await _bookingRepository.AddAsync(booking);
-
             return booking;
         }
 
@@ -191,6 +228,23 @@ namespace hazifeladat.Logic.Services
             existing.Departure = newDeparture;
             existing.NumberOfGuests = newNumberOfGuests;
 
+
+            if (_pricingService != null)
+            {
+                try
+                {
+                    var priceQuote = await _pricingService.CalculatePriceAsync(
+                        existing.PlaceId,
+                        newArrival,
+                        newDeparture);
+                    existing.TotalPrice = priceQuote.TotalPrice;
+                }
+                catch
+                {
+
+                }
+            }
+
             await _bookingRepository.UpdateAsync(existing);
 
             result.Success = true;
@@ -261,6 +315,7 @@ namespace hazifeladat.Logic.Services
                     PlaceType = place.Type,
                     Capacity = place.Capacity,
                     Status = place.Status,
+                    PricePerNight = place.PricePerNight,
                     IsAvailable = place.Status == PlaceStatus.AVAILABLE && !overlapping.Any(),
                     OverlappingBookings = overlapping
                 };
@@ -295,15 +350,11 @@ namespace hazifeladat.Logic.Services
                         ?? throw new InvalidOperationException("Hely nem található.");
 
 
-            if (place.Capacity.HasValue && numberOfGuests > place.Capacity.Value)
+            if (place.Capacity.HasValue && numberOfGuests >= place.Capacity.Value)
                 throw new InvalidOperationException("A vendégek száma meghaladja a hely kapacitását.");
 
             if (place.Status != PlaceStatus.AVAILABLE)
                 throw new InvalidOperationException("A hely jelenleg nem elérhető.");
-
-            if (place.Capacity.HasValue && numberOfGuests > place.Capacity.Value)
-                throw new InvalidOperationException("A vendégek száma meghaladja a hely kapacitását.");
-
         }
     }
 }
