@@ -3,19 +3,21 @@
 # csapat felosztás:
   Szabina:
     - követelmény specifikáció
+    - osztálydiagram (Done)
+    - Use case diagramm (Done)
     - telepítési útmutató
     - felhasználói doksi
 
   kolos:
-    - backend
-    - 5 teszt
-    - osztálydiagram
+    - backend (Done)
+    - 5 teszt (Done)
+    - tesztek szövegesen (In progres)
     - szekvenciadiagram
-    - szöveges eírása az alkalmazásnak
+    - szöveges leírása az alkalmazásnak
 
   dominik:
-    - frontend
-    - 5 teszt
+    - frontend (In progress)
+    - 5 teszt (Done)
     - állapotgép / aktivitásdiagram
 
 
