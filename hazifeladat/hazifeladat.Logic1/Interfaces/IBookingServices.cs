@@ -41,7 +41,7 @@ namespace hazifeladat.Logic.Interfaces
             DateTime newDeparture,
             int newNumberOfGuests);
 
-        Task<bool> CancelBookingAsync(int bookingId);
+        Task<bool> CancelBookingAsync(int bookingId, int userId, UserRole userRole);
 
         Task<bool> IsPlaceAvailableAsync(
             int placeId,

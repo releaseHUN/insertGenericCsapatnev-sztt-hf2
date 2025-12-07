@@ -1,8 +1,0 @@
-{
-  "Id": 1,
-  "From": "2025-06-01T00:00:00",
-  "To": "2025-09-01T00:00:00",
-  "Multiplier": 1.5,
-  "AppliesToType": [0,1,2,3],
-  "Name": "Nyári főszezon"
-}

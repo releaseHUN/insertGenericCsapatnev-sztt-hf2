@@ -195,10 +195,14 @@ namespace hazifeladat.Logic.Services
             return result;
         }
 
-        public async Task<bool> CancelBookingAsync(int bookingId)
+        public async Task<bool> CancelBookingAsync(int bookingId, int userId, UserRole userRole)
         {
             var existing = await _bookingRepository.GetByIdAsync(bookingId);
             if (existing == null)
+                return false;
+
+            // Check if user is the booking owner or an admin
+            if (userRole != UserRole.ADMIN && existing.UserId != userId)
                 return false;
 
             await _bookingRepository.DeleteAsync(bookingId);

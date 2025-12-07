@@ -20,7 +20,7 @@ namespace hazifeladat.DAL1.Models
 
         public override string ToString()
         {
-            return $"| Foglalás ID: {BookingId,displayConfig.numFieldWidth} | Hely ID: {PlaceId,displayConfig.numFieldWidth} | Vendég név: {GuestName,displayConfig.nameFieldWidth} | Férőhelyek száma: {NumberOfGuests,displayConfig.numFieldWidth} | Érkezés: {Arrival:yyyy-MM-dd} - Távozás: {Departure:yyyy-MM-dd} |";
+            return $"| Foglalás ID: {BookingId,displayConfig.numFieldWidth} | Hely ID: {PlaceId,displayConfig.numFieldWidth} | Vendég név: {GuestName,displayConfig.nameFieldWidth} | Vendég ID: {UserId,displayConfig.numFieldWidth} | Férőhelyek száma: {NumberOfGuests,displayConfig.numFieldWidth} | {Arrival:yyyy-MM-dd} - {Departure:yyyy-MM-dd} |";
         }
     }
 }
