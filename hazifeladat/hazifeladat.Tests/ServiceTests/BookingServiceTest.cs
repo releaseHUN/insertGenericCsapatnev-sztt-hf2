@@ -105,7 +105,7 @@ public class BookingServiceTest
             numberOfGuests: 2,
             guestName: "AutoGuest");
 
-        Assert.AreEqual(2, booking.PlaceId, "A megadott idõszakra nincs szabad hely ebbõl a típusból.");
+        Assert.AreEqual(2, booking.PlaceId);
     }
 
     [TestMethod]

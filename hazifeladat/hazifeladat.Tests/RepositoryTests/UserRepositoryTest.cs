@@ -10,26 +10,15 @@ public class UserRepositoryTest
     private static string CreateUniqueFileName()
            => $"TestUser_{Guid.NewGuid():N}.json";
 
-    private static string GetFilePathInData(string fileName)
-    {
-        var basePath = AppContext.BaseDirectory;
-        var dataDir = Path.Combine(basePath, "Data");
-        Directory.CreateDirectory(dataDir);
-        return Path.Combine(dataDir, fileName);
-    }
+   
     [TestMethod]
     public async Task LoadAsync_FileDoesNotExist_ReturnsEmptyList()
     {
         
         var fileName = CreateUniqueFileName();
-        var fullPath = GetFilePathInData(fileName);
-
-        if (File.Exists(fullPath))
-            File.Delete(fullPath);
 
         var repo = new UserRepository(fileName);
 
-        
         var result = await repo.LoadAsync();
         var all = await repo.GetAllAsync();
 
@@ -39,7 +28,7 @@ public class UserRepositoryTest
     }
 
     [TestMethod]
-    public async Task AddAsync_AddsBooking_AndPersistsToFile()
+    public async Task AddAsync_AddsUser_AndPersistsToFile()
     {
         
         var fileName = CreateUniqueFileName();
@@ -61,7 +50,7 @@ public class UserRepositoryTest
     }
 
     [TestMethod]
-    public async Task DeleteAsync_DeletesBooking_AndPersistsToFile()
+    public async Task DeleteAsync_DeletesUser_AndPersistsToFile()
     {
         
         var fileName = CreateUniqueFileName();

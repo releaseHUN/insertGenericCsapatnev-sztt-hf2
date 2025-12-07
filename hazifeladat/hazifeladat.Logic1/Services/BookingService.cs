@@ -295,7 +295,7 @@ namespace hazifeladat.Logic.Services
                         ?? throw new InvalidOperationException("Hely nem található.");
 
 
-            if (place.Capacity.HasValue && numberOfGuests > place.Capacity.Value)
+            if (place.Capacity.HasValue && numberOfGuests >= place.Capacity.Value)
                 throw new InvalidOperationException("A vendégek száma meghaladja a hely kapacitását.");
 
             if (place.Status != PlaceStatus.AVAILABLE)

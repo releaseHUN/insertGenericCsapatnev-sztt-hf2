@@ -41,7 +41,7 @@ namespace hazifeladat.Tests
         }
 
         [TestMethod]
-        public async Task RegisterGuestAsync_Throws_WhenNameAlreadyExists()
+        public async Task RegisterGuestAsync_Throws_WhenUserNameAlreadyExists()
         {
             await Assert.ThrowsExceptionAsync<InvalidOperationException>(async () =>
             {
