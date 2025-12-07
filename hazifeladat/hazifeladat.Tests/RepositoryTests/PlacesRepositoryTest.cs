@@ -23,7 +23,7 @@ public class PlacesRepositoryTest
     [TestMethod]
     public async Task LoadAsync_FileDoesNotExist_ReturnsEmptyList()
     {
-        // arrange
+        
         var fileName = CreateUniqueFileName();
         var fullPath = GetFilePathInData(fileName);
 
@@ -32,11 +32,11 @@ public class PlacesRepositoryTest
 
         var repo = new PlacesRepository(fileName);
 
-        // act
+        
         var result = await repo.LoadAsync();
         var all = await repo.GetAllAsync();
 
-        // assert
+        
         Assert.IsTrue(result, "LoadAsync should return true even if file does not exist.");
         Assert.AreEqual(0, all.Count, "New repository should have empty booking list.");
     }
@@ -44,27 +44,20 @@ public class PlacesRepositoryTest
     [TestMethod]
     public async Task AddAsync_AddsBooking_AndPersistsToFile()
     {
-        // arrange
+        
         var fileName = CreateUniqueFileName();
         var repo = new PlacesRepository(fileName);
         await repo.LoadAsync();
 
-        var places = new Places
-        {
-            Id = 0,  // 0 -> repo ad majd ID-t
-                            // ide nyugodtan beírhatsz további property-ket, ha vannak kötelezõk
+        var places = new Places{};
 
-        };
-
-        // act
+        
         await repo.AddAsync(places);
 
-        // új repository ugyanazzal a fájllal -> ellenõrizzük, hogy tényleg fájlból olvas
         var repo2 = new PlacesRepository(fileName);
         await repo2.LoadAsync();
         var all = await repo2.GetAllAsync();
 
-        // assert
         Assert.AreEqual(1, all.Count, "Exactly one booking should be stored.");
         Assert.AreEqual(1, all[0].Id, "First booking ID should be 1.");
     }
@@ -72,7 +65,7 @@ public class PlacesRepositoryTest
     [TestMethod]
     public async Task DeleteAsync_DeletesBooking_AndPersistsToFile()
     {
-        // arrange
+        
         var fileName = CreateUniqueFileName();
         var repo = new PlacesRepository(fileName);
         await repo.LoadAsync();
@@ -91,14 +84,14 @@ public class PlacesRepositoryTest
 
         int idToDelete = allBefore[0].Id;
 
-        // act
+        
         await repo.DeleteAsync(idToDelete);
 
         var repo2 = new PlacesRepository(fileName);
         await repo2.LoadAsync();
         var allAfter = await repo2.GetAllAsync();
 
-        // assert
+        
         Assert.AreEqual(2, allAfter.Count, "Exactly one booking should remain after delete.");
         Assert.IsFalse(allAfter.Any(b => b.Id == idToDelete),
             "Deleted booking should not be present anymore.");
