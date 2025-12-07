@@ -23,8 +23,8 @@
     - frontend (Done)
     - 5 teszt (Done)
     - aktivitásdiagram (In progres)
-    - telepítési útmutató (In progres)
-    - felhasználói doksi (In progres)
+    - telepítési útmutató (Done)
+    - felhasználói doksi (Done)
     
 
 
