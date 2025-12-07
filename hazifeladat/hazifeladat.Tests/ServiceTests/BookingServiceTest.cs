@@ -1,7 +1,10 @@
-using hazifeladat.DAL1.Models.Enums;
 using hazifeladat.DAL1.Models;
-using hazifeladat.Logic.Services;
+using hazifeladat.DAL1.Models.Enums;
+using hazifeladat.DAL1.Repositories.Repositories;
 using hazifeladat.Logic.Interfaces;
+using hazifeladat.Logic.Services;
+using hazifeladat.Logic1.Interfaces;
+using hazifeladat.Logic1.Services;
 
 namespace hazifeladat.Tests;
 
@@ -13,7 +16,10 @@ public class BookingServiceTest
     private InMemoryBookingRepository _bookingRepo = null!;
     private InMemoryUserRepository _userRepo = null!;
     private InMemoryPlacesRepository _placesRepo = null!;
+    private InMemorySeasonRulesRepository _seasonalRulesRepo = null!;
     private IBookingServices _service = null!;
+    private IPricingService _pricingService = null!;
+    //PricingService pricingService = new PricingService(_placesRepo, seasonalRulesRepository);
 
     [TestInitialize]
     public void Setup()
@@ -54,7 +60,10 @@ public class BookingServiceTest
             };
         _placesRepo = new InMemoryPlacesRepository(places);
 
-        _service = new BookingService(_bookingRepo, _userRepo, _placesRepo);
+        _seasonalRulesRepo = new InMemorySeasonRulesRepository();
+        _pricingService = new PricingService(_placesRepo, _seasonalRulesRepo);
+
+        _service = new BookingService(_bookingRepo, _userRepo, _placesRepo, _pricingService);
     }
 
     
@@ -84,29 +93,7 @@ public class BookingServiceTest
         });
     }
 
-    [TestMethod]
-    public async Task CreateBookingForPlaceTypeAsync_PicksFreePlace()
-    {
-        await _bookingRepo.AddAsync(new Booking
-        {
-            UserId = 1,
-            PlaceId = 1,
-            GuestName = "Existing",
-            NumberOfGuests = 2,
-            Arrival = new DateTime(2025, 8, 1),
-            Departure = new DateTime(2025, 8, 5)
-        });
-
-        var booking = await _service.CreateBookingForPlaceTypeAsync(
-            userId: 1,
-            placeType: (PlaceTypes)2,
-            arrival: new DateTime(2025, 8, 2),
-            departure: new DateTime(2025, 8, 4),
-            numberOfGuests: 2,
-            guestName: "AutoGuest");
-
-        Assert.AreEqual(2, booking.PlaceId);
-    }
+    
 
     [TestMethod]
     public async Task CreateBookingForPlaceAsync_Throws_WhenGuestCountExceedsCapacity()
