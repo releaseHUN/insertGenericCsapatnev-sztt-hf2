@@ -36,7 +36,7 @@ public class BookingServiceTest
         {
                 new Places
                 {
-                    
+                    Id= 1,
                     Type = (PlaceTypes)2,
                     Capacity = 4,
                     PricePerNight = 10000,
@@ -45,7 +45,7 @@ public class BookingServiceTest
                 },
                 new Places
                 {
-                    
+                    Id = 2,
                     Type = (PlaceTypes)2,
                     Capacity = 2,
                     PricePerNight = 8000,
@@ -67,7 +67,7 @@ public class BookingServiceTest
             UserId = 1,
             PlaceId = 1,
             GuestName = "Existing",
-            NumberOfGuests = 2,
+            NumberOfGuests = 5,
             Arrival = new DateTime(2025, 7, 1),
             Departure = new DateTime(2025, 7, 5)
         });
@@ -75,7 +75,8 @@ public class BookingServiceTest
         await Assert.ThrowsExceptionAsync<InvalidOperationException>(async () =>
         {
             await _service.CreateBookingForPlaceAsync(
-                1, 1,
+                1, 
+                1,
                 new DateTime(2025, 7, 3),
                 new DateTime(2025, 7, 6),
                 2,
@@ -106,5 +107,25 @@ public class BookingServiceTest
 
         Assert.AreEqual(2, booking.PlaceId, "A megadott idõszakra nincs szabad hely ebbõl a típusból.");
     }
+
+    [TestMethod]
+    public async Task CreateBookingForPlaceAsync_Throws_WhenGuestCountExceedsCapacity()
+    {
+
+        var test = await Assert.ThrowsExceptionAsync<InvalidOperationException>(async () =>
+        {
+            await _service.CreateBookingForPlaceAsync(
+                userId: 1,
+                placeId: 2,
+                arrival: new DateTime(2025, 9, 1),
+                departure: new DateTime(2025, 9, 3),
+                numberOfGuests: 3,  
+                guestName: "TooMany");
+        });
+
+        Assert.AreEqual("A vendégek száma meghaladja a hely kapacitását.", test.Message);
+    }
+
+
 
 }

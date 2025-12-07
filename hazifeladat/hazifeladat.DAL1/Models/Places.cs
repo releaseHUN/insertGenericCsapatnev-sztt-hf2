@@ -19,14 +19,16 @@ namespace hazifeladat.DAL1.Models
         public List<string>? Amenities { get; set; }
         public PlaceStatus Status { get; set; }
 
+
+
         public Places(
         PlaceTypes type,
         int? capacity,
         float pricePerNight,
         PlaceStatus status,
-        List<string>? amenities):this()
+        List<string>? amenities
+        ):this() // saját ID generálás
         {
-            //Id = _nextId++;  // saját ID generálás
             Type = type;
             Capacity = capacity;
             PricePerNight = pricePerNight;
