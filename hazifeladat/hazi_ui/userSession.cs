@@ -298,6 +298,7 @@ namespace hazi_ui
         private static async Task<bool?> handleModifyBooking(BookingService bookingService, User user)
         {
             displayDividerLine(DefaultDividerWidth, '=');
+
             Console.Write("Adja meg a módosítani kívánt foglalás azonosítóját: ");
             if (!TryParseInt(Console.ReadLine(), "foglalás azonosító", out int bookingId, minValue: 1))
             {
