@@ -88,17 +88,7 @@ namespace hazifeladat.Logic.Services
 
             var bookingId = booking.BookingId;
 
-
-
             await _bookingRepository.AddAsync(booking);
-
-            
-            var place = await _placesRepository.GetByIdAsync(placeId);
-            if (place != null)
-            {
-                place.Status = PlaceStatus.BOOKED;
-                await _placesRepository.UpdateAsync(place);
-            }
 
             return booking;
         }
